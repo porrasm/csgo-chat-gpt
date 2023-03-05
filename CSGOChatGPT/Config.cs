@@ -13,19 +13,19 @@ public class Config {
 
 
     /// <summary>
-    /// Your current Steam nickname. Needed so the AI won't respond to your messages.
+    /// Your current Steam nickname. Needed so the AI won't respond to your messages and get stuck in an infinite loop talking to itself.
     /// </summary>
     public string PersonalNickname = "your_current_nickname";
     
     /// <summary>
-    /// Your ChatGPT API key. Get one here: https://platform.openai.com/account/api-keys"
+    /// Your ChatGPT API key. Get one here: https://platform.openai.com/account/api-keys
     /// </summary>
     public string APIKey = "your_chatgpt_api_key";
 
     /// <summary>
     /// The length of the AI responses. 1 token ~ 4 characters.
     /// </summary>
-    public int ResponseMaxTokens = 40;
+    public int ResponseMaxTokens { get; set; } = 20;
 
     /// <summary>
     /// Whether the AI should respond to chat messages automatically.
@@ -56,7 +56,7 @@ public class Config {
     /// The AI instruction. You can experiment with this. Example: 'You are roleplaying as a very angry gamer.' or 'You are a helpful assistant.'
     /// </summary>
     public string AIInstruction = "You are a helpful assistant.";
-    
+       
 
     static Config() {
         Instance = new Config();

@@ -55,6 +55,7 @@ namespace CSGOChatGPT.ChatGPT {
                 requestMessages.AddRange(Messages);
 
                 ChatGPTRequest request = new ChatGPTRequest(requestMessages);
+                request.max_tokens = ChatResponseTokenLength;
 
                 LastResponse = await ChatGPTApi.GetResponse(request);
 
