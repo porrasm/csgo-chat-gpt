@@ -25,7 +25,7 @@ public class Config {
     /// <summary>
     /// The length of the AI responses. 1 token ~ 4 characters.
     /// </summary>
-    public int ResponseMaxTokens { get; set; } = 40;
+    public int ResponseMaxTokens { get; set; } = 0;
 
     /// <summary>
     /// Whether the AI should respond to chat messages automatically.
@@ -51,6 +51,11 @@ public class Config {
     /// How many messages the AI should remember. The more messages, the more accurate the AI will be. But it will also take longer to respond.
     /// </summary>
     public int MessageHistoryLength = 6;
+
+    /// <summary>
+    /// Whether the AI should ignore messages that it sent itself. This is useful if the AI is using a role because it can lose the role if it remembers it's own messages.
+    /// </summary>
+    public bool IgnoreAIMessagesInHistory = false;
 
     /// <summary>
     /// The AI instruction. You can experiment with this. Example: 'You are roleplaying as a very angry gamer.' or 'You are a helpful assistant.'

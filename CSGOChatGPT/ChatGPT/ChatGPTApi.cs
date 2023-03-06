@@ -42,15 +42,6 @@ namespace CSGOChatGPT.ChatGPT {
         }
 
         public int? max_tokens { get; set; }
-
-        public static ChatGPTRequest Default(string message, int responseTokens = 0) {
-            ChatGPTRequest request = new ChatGPTRequest(new List<ChatGPTMessage>() { new ChatGPTMessage("user", message) });
-            if (responseTokens > 0) {
-                request.max_tokens = responseTokens;
-            }
-
-            return request;
-        }
     }
 
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);

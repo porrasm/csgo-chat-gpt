@@ -30,21 +30,39 @@ ai    : What did you just say? Learn to play? You think I'm not playing well? I'
 7. Configure the bot
 8. Type 'start' in the console
 
+
 ## How to configure
 
 The bot offers the following configuration options:
 
 - PersonalNickname: Your current Steam nickname. Needed so the AI won't respond to your messages and get stuck in an infinite loop talking to itself.
 - APIKey: Your ChatGPT API key. Get one here: https://platform.openai.com/account/api-keys
-- ResponseMaxTokens: The length of the AI responses. 1 token ~ 4 characters.
+- ResponseMaxTokens: The length of the AI responses. 1 token ~ 4 characters. May be best to leave to 0. It can make the bot work not as well.
 - RespondToChatAutomatically: Whether the AI should respond to chat messages automatically.
 - RespondToAnyConsoleMessageWithSplitter: Whether the AI should respond to any console message that contains the splitter. Needed for other games than CS:GO or for some community servers. Example: chat message starts with 'ai: ', the bot will respond.
 - ConsoleMessageSplitter: The splitter that the AI will use to respond to console messages.
 - TelnetPort: The port you set in the games launch options with the '-netconport' parameter.
 - MessageHistoryLength: How many messages the AI should remember. The more messages, the more accurate the AI will be. But it will also take longer to respond.
+- IgnoreAIMessagesInHistory: Whether the AI should ignore messages that it sent itself. This is useful if the AI is using a role because it can lose the role if it remembers it's own messages.
 - AIInstruction: The AI instruction. You can experiment with this. Example: 'You are roleplaying as a very angry gamer.' or 'You are a helpful assistant.'
 
-The most interesting is perhaps the AIInstruction. You can define the type of AI you want to talk to. For example, you can make the AI a very angry gamer or a helpful assistant.
+### AI Instruction
+The most interesting is perhaps the instruction you can give to the AI. You can define the type of AI you want to talk to. For example, you can make the AI a very angry gamer or a helpful assistant.
+
+Try to describe the wanted behaviour of the bot here. If you want short messages try to include that here instead of using the `ResponseMaxTokens` variable.
+
+It's pretty hard to find interesting values for this. Few examples that seemed to work pretty well:
+
+```
+You are a helpful assistant who responds with a few sentences.
+You are a chat bost who responds with funny jokes using a few sentences.
+You are roleplaying a CS:GO player. You respond with a few sentences.
+You are roleplaying a trashtalking CS:GO player who responds with gamer terms and short messages (1-2 sentences).
+You are roleplaying Yoda from Star Wars. You respond with one or two sentences.
+```
+
+You can type pretty much anything in here but for an in game chat you probably want to ask the AI to use only a few sentences.
+
 
 ## Can this get me VAC banned?
 

@@ -11,7 +11,7 @@ namespace CSGOChatGPT.ChatGPT {
 
         public bool IsGenerating { get; set; } = false;
 
-        public int ChatHistoryLength {get; set;} = 5;
+        public int ChatHistoryLength { get; set; } = 5;
         public int ChatResponseTokenLength { get; set; } = 0;
 
         public List<ChatGPTMessage> Messages { get; set; } = new List<ChatGPTMessage>();
@@ -55,7 +55,9 @@ namespace CSGOChatGPT.ChatGPT {
                 requestMessages.AddRange(Messages);
 
                 ChatGPTRequest request = new ChatGPTRequest(requestMessages);
-                request.max_tokens = ChatResponseTokenLength;
+                if (ChatResponseTokenLength > 0) {
+                    request.max_tokens = ChatResponseTokenLength;
+                }
 
                 LastResponse = await ChatGPTApi.GetResponse(request);
 
@@ -66,7 +68,9 @@ namespace CSGOChatGPT.ChatGPT {
 
                 var message = LastResponse.GetFirstResponse();
 
-                AddMessage(message.role, message.content);
+                if (!Config.Instance.IgnoreAIMessagesInHistory) {
+                    AddMessage(message.role, message.content);
+                }
 
                 return message;
             } catch (Exception e) {

@@ -71,6 +71,8 @@ namespace CSGOChatGPT.CSGO {
                     return;
                 }
 
+                Console.WriteLine("Received AI response: " + response.content);
+
                 await CS.SendChat(response.content);
 
             } catch (Exception e) {

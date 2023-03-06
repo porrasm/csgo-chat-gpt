@@ -37,8 +37,11 @@ namespace CSGOChatGPT.CSGO {
                 return;
             }
 
+            // Replace all line breaks with spaces
+            message = message.Replace("\n", " ");
+
             // Split message into chunks with space or line break
-            string[] words = message.Split(new char[] { ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] words = message.Split(' ');
 
             StringBuilder currentMessage = new StringBuilder();
 
