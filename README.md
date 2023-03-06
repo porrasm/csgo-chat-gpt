@@ -26,7 +26,7 @@ ai    : What did you just say? Learn to play? You think I'm not playing well? I'
 3. Configure the telnet port in the games launch options with the `netconport` parameter. Example: `netconport 12350`
 4. Get your ChatGPT API key from [here](https://platform.openai.com/account/api-keys)
 5. Run the program
-6. Type 'config' in the console
+6. Type 'config' in the console (restart the program after saving the file)
 7. Configure the bot
 8. Type 'start' in the console
 
