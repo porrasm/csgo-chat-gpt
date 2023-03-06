@@ -36,6 +36,7 @@ while(true) {
     if (command == "config") {
         Console.WriteLine("Opening config...");
         Config.EditConfig();
+        break;
     }
 
     if (command == "resetconfig") {
