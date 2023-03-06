@@ -25,7 +25,7 @@ public class Config {
     /// <summary>
     /// The length of the AI responses. 1 token ~ 4 characters.
     /// </summary>
-    public int ResponseMaxTokens { get; set; } = 20;
+    public int ResponseMaxTokens { get; set; } = 40;
 
     /// <summary>
     /// Whether the AI should respond to chat messages automatically.
