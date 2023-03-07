@@ -35,16 +35,55 @@ ai    : What did you just say? Learn to play? You think I'm not playing well? I'
 
 The bot offers the following configuration options:
 
-- PersonalNickname: Your current Steam nickname. Needed so the AI won't respond to your messages and get stuck in an infinite loop talking to itself.
-- APIKey: Your ChatGPT API key. Get one here: https://platform.openai.com/account/api-keys
-- ResponseMaxTokens: The length of the AI responses. 1 token ~ 4 characters. May be best to leave to 0. It can make the bot work not as well.
-- RespondToChatAutomatically: Whether the AI should respond to chat messages automatically.
-- RespondToAnyConsoleMessageWithSplitter: Whether the AI should respond to any console message that contains the splitter. Needed for other games than CS:GO or for some community servers. Example: chat message starts with 'ai: ', the bot will respond.
-- ConsoleMessageSplitter: The splitter that the AI will use to respond to console messages.
-- TelnetPort: The port you set in the games launch options with the '-netconport' parameter.
-- MessageHistoryLength: How many messages the AI should remember. The more messages, the more accurate the AI will be. But it will also take longer to respond.
-- IgnoreAIMessagesInHistory: Whether the AI should ignore messages that it sent itself. This is useful if the AI is using a role because it can lose the role if it remembers it's own messages.
-- AIInstruction: The AI instruction. You can experiment with this. Example: 'You are roleplaying as a very angry gamer.' or 'You are a helpful assistant.'
+```
+# CSGOChatGPT config file
+
+# Whether the bot should connect to the game at startup.
+ConnectAtStartup=False
+
+# Your current Steam nickname. Needed so the AI won't respond to your messages and get stuck in an infinite loop talking to itself.
+PersonalNickname=your_current_nickname
+
+# Your ChatGPT API key. Get one here: https://platform.openai.com/account/api-keys
+APIKey=your_chatgpt_api_key
+
+# The port you set in the games launch options with the '-netconport' parameter.
+TelnetPort=12350
+
+# The maximum length of a chat message in the game. If a message is longer than this, the messages will be split into multiple chunks. Your username length will affect this.
+GameChatMessageMaxLength=100
+
+# Whether the AI should respond to chat messages automatically.
+RespondToChatAutomatically=True
+
+# The string that separates the nickname from the message. Notice the hidden character in the default value: '[U+200E] : '.
+RespondToChatSplitter=‎ : 
+
+# The string that appears in fron of your name when you're dead.
+RespondToChatDeadSplitter=*DEAD*
+
+# Whether the AI should respond to any console message that contains the splitter. Needed for other games than CS:GO or for some community servers. Example: chat message starts with 'ai: ', the bot will respond.
+RespondToAnyConsoleMessage=True
+
+# The splitter that the AI will use to respond to console messages.
+RespondToAnyConsoleMessageSplitter= ai: 
+
+# Whether the AI should respond to using the game chat. Set to false to receive AI responses only in the game console. Additionally set the automatic responses from players to false and you can use the console as a personal ChatGPT interface without interference from other players.
+RespondUsingGameChat=True
+
+# The AI instruction. You can experiment with this. Example: 'You are roleplaying as a very angry gamer.' or 'You are a helpful assistant.'
+AIInstruction=You are a helpful assistant.
+
+# How many messages the AI should remember. The more messages, the more accurate the AI will be. But it will also take longer to respond.
+MessageHistoryLength=6
+
+# Whether the AI should ignore messages that it sent itself. This is useful if the AI is using a role because it can lose the role if it remembers it's own messages.
+IgnoreAIMessagesInHistory=False
+
+# The length of the AI responses. 1 token ~ 4 characters.
+ResponseMaxTokens=0
+
+```
 
 ### AI Instruction
 The most interesting is perhaps the instruction you can give to the AI. You can define the type of AI you want to talk to. For example, you can make the AI a very angry gamer or a helpful assistant.
@@ -77,3 +116,23 @@ This will work with most Valve games. However the direct chat response only work
 ## Donate if you really enjoy this!
 
 Paypal: https://paypal.me/porrasm
+
+# Example use cases
+
+## English-Spanish translator
+
+### Usage
+
+- Send message in Spanish to chat `echo chatbot_chat My English message`
+- Translate receiveed message into console `echo chatbot_chat_private La respuesta española`
+
+### Config file
+
+```
+RespondToChatAutomatically=False
+RespondToAnyConsoleMessage=False
+RespondUsingGameChat=True
+AIInstruction=You are an English-Spanish translator.
+MessageHistoryLength=1
+ResponseMaxTokens=0
+```

@@ -25,6 +25,10 @@ namespace CSGOChatGPT.ChatGPT {
             instructionMessage = new ChatGPTMessage("system", instruction ?? DEFAULT_INSTRUCTION);
         }
 
+        public void SetInstruction(string instruction) {
+            instructionMessage.content = instruction;
+        }
+
         public void AddMessage(string role, string content) {
             Messages.Add(new ChatGPTMessage(role, content));
             if (Messages.Count > ChatHistoryLength) {
@@ -68,7 +72,7 @@ namespace CSGOChatGPT.ChatGPT {
 
                 var message = LastResponse.GetFirstResponse();
 
-                if (!Config.Instance.IgnoreAIMessagesInHistory) {
+                if (!Config.Instance.IgnoreAIMessagesInHistory.Value) {
                     AddMessage(message.role, message.content);
                 }
 

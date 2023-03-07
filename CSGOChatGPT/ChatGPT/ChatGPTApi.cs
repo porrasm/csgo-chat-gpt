@@ -12,7 +12,7 @@ namespace CSGOChatGPT.ChatGPT {
         public static async Task<ChatGPTResponse> GetResponse(ChatGPTRequest request) {
             Console.WriteLine("Executing ChatGPT request: " + request.messages[^1].content);
             try {
-                ChatGPTResponse res = await Requests.PostJSON<ChatGPTRequest, ChatGPTResponse>(endpoint, request, Config.Instance.APIKey);
+                ChatGPTResponse res = await Requests.PostJSON<ChatGPTRequest, ChatGPTResponse>(endpoint, request, Config.Instance.APIKey.Value);
                 return res;
             } catch (Exception e) {
                 Console.WriteLine("Error in sending request: " + e);
@@ -31,6 +31,10 @@ namespace CSGOChatGPT.ChatGPT {
 
         public string role { get; set; }
         public string content { get; set; }
+
+        public override string ToString() {
+            return role + ": " + content;
+        }
     }
 
     public class ChatGPTRequest {
