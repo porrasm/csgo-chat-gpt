@@ -119,20 +119,65 @@ Paypal: https://paypal.me/porrasm
 
 # Example use cases
 
-## English-Spanish translator
+## Basic ChatGPT in CS:GO chat
 
 ### Usage
 
-- Send message in Spanish to chat `echo chatbot_chat My English message`
-- Translate receiveed message into console `echo chatbot_chat_private La respuesta española`
+Responds to game chat messages
 
 ### Config file
 
 ```
+...
+RespondToChatAutomatically=True
+RespondToChatSplitter=‎ :
+RespondToAnyConsoleMessage=True
+RespondToAnyConsoleMessageSplitter= ai: 
+RespondUsingGameChat=True
+AIInstruction=You are an helpful assistant who responds with 1-5 sentences.
+MessageHistoryLength=6
+ResponseMaxTokens=0
+...
+```
+
+## Personal private ChatGPT interface in CS:GO console
+
+### Usage
+
+Responds to console commands:
+- `echo chatbot`
+- `echo chatbot_private`
+
+### Config file
+
+```
+...
+RespondToChatAutomatically=False
+RespondToAnyConsoleMessage=False
+RespondUsingGameChat=False
+AIInstruction=You are an helpful assistant.
+MessageHistoryLength=10
+ResponseMaxTokens=0
+...
+```
+
+
+## English-German translator
+
+### Usage
+
+- Send message in Spanish to chat `echo chatbot_chat My English message`
+- Translate receiveed message into console `echo chatbot_chat_private 'The German response'`
+
+### Config file
+
+```
+...
 RespondToChatAutomatically=False
 RespondToAnyConsoleMessage=False
 RespondUsingGameChat=True
-AIInstruction=You are an English-Spanish translator.
-MessageHistoryLength=1
+AIInstruction=You are an assistant who translates every English message into German and vice versa.
+MessageHistoryLength=2
 ResponseMaxTokens=0
+...
 ```
